@@ -1,16 +1,18 @@
 class Solution {
 public:
-    bool solve(int ind, int n, vector<int>& arr,vector<int>& dp){
-        if(ind >= n) return true;
-        if(dp[ind] != -1) return dp[ind];
-        bool ans = false;
-        for(int i=ind+1; i<=min(n,ind+arr[ind]); i++) {
-            ans = ans || solve(i,n,arr,dp);
-        }
-        return dp[ind] = ans;
-    }
     bool canJump(vector<int>& nums) {
-        vector<int> dp(nums.size(),-1);
-        return solve(0,nums.size()-1,nums,dp);
+        int n=nums.size();
+        vector<int> dp(n,false);
+        dp[n-1] = true;
+        for(int i=n-2; i>=0; i--) {
+            if(nums[i] == false) dp[i] = false;
+            else if(nums[i] >= n-1-i) dp[i]=true;
+            else {
+                for(int j=1; j<=nums[i]; j++) {
+                    dp[i] = dp[i] || dp[i+j];
+                }
+            }
+        }
+        return dp[0];
     }
 };
