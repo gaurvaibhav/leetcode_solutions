@@ -1,12 +1,14 @@
+#define op ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL);
 class MinStack {
 public:
     stack<int> stc;
     vector<int> mn;
     MinStack() {
-        
+        op;
     }
     
     void push(int val) {
+        op;
         stc.push(val);
         if(mn.size()==0 || val<=mn.back()) {
             mn.push_back(val);
@@ -14,6 +16,7 @@ public:
     }
     
     void pop() {
+        op;
         if(stc.top()==mn.back()) {
             mn.pop_back();
         }
@@ -21,10 +24,12 @@ public:
     }
     
     int top() {
+        op;
         return stc.top();
     }
     
     int getMin() {
+        op;
         return mn.back();
     }
 };
