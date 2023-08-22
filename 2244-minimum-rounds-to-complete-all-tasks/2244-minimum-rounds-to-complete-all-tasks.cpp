@@ -3,13 +3,15 @@ class Solution {
 private:
     int solve(int n, vector<int>& dp) {
         op;
-        if(!n) return 0;
-        if(dp[n]!=-1) return dp[n];
-        int t,th;
-        t = th = 1e6;
-        if(n-2>=0) t = min(t, 1+solve(n-2,dp));
-        if(n-3>=0) th = min(th, 1+solve(n-3,dp));
-        return dp[n] = min(t,th);        
+        dp[0]=0;
+        for(int i=1; i<=n; i++) {
+            int t,th;
+            t=th=1e5;
+            if(i-2>=0) t=min(t, 1+dp[i-2]);
+            if(i-3>=0) th=min(th, 1+dp[i-3]);
+            dp[i]=min(t,th);
+        }
+        return dp[n];
     }
 public:
     int minimumRounds(vector<int>& tasks) {
