@@ -1,20 +1,23 @@
 #define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 public:
-    void dfs(int node,vector<vector<int>>& adj, vector<int>& vis, vector<int>& ans){
-        FASTIO;
-        vis[node] = 1;
-        ans.push_back(node);
-        for(int it: adj[node]) {
-            if(!vis[it]){
-                dfs(it,adj,vis,ans);
-            }
-        }
-    }
-    vector<int> dfsOfGraph(int V, vector<vector<int>>& adj, int node, vector<int>& vis) {
-        FASTIO;
+    vector<int> bfsTraversal(int V, vector<vector<int>>& adj, int node, vector<int>& vis) {
         vector<int> res;
-        dfs(node,adj,vis,res);
+        vis[node] = 1;
+        queue<int> q;
+        q.push(node);
+        while(!q.empty()) {
+            int aux = q.front();
+            q.pop();
+            res.push_back(aux);
+            for(int it: adj[aux]) {
+                if(!vis[it]){
+                    vis[it] = 1;
+                    q.push(it);
+                }
+            }
+
+        }
         return res;
     }
     int findCircleNum(vector<vector<int>>& isConnected) {
@@ -33,7 +36,7 @@ public:
         for(int i=0; i<n; ++i) {
             if(!vis[i]) {
                 ans++;
-                res.push_back(dfsOfGraph(n, adj, i,vis));
+                res.push_back(bfsTraversal(n, adj, i,vis));
             }
         }
         return ans;
