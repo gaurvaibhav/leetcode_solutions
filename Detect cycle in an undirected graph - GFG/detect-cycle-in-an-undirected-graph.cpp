@@ -5,22 +5,14 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 private:
-    bool detect(int src, vector<int> adj[], int vis[]) {
-        vis[src] = 1;
-        queue<pair<int,int>> q;
-        q.push({src,-1});
-        while(!q.empty()) {
-            int node =  q.front().first;
-            int parent =  q.front().second;
-            q.pop();
-            for(auto adjacentNode: adj[node]) {
-                if(!vis[adjacentNode]) {
-                    vis[adjacentNode] = 1;
-                    q.push({adjacentNode, node});
-                }
-                else if(parent != adjacentNode) {
-                    return true;
-                }
+    bool detect(int node, int parent, vector<int> adj[], vector<int>& vis) {
+        vis[node] = 1;
+        for(auto it: adj[node]) {
+            if(!vis[it]) {
+                if(detect(it, node, adj, vis)) return true;
+            }
+            else if(parent != it) {
+                return true;
             }
         }
         return false;
@@ -28,11 +20,11 @@ private:
 public:
     bool isCycle(int V, vector<int> adj[]) {
         // Write your code here.
-        int vis[V] = {0};
+        vector<int> vis(V,0);
         for(int i=0; i<V; ++i) {
             // checking all the components of the graph (disconnected if any)
             if(!vis[i]) {
-                if(detect(i,adj,vis)) return true;
+                if(detect(i,-1,adj,vis)) return true;
             }
         } 
         return false;
