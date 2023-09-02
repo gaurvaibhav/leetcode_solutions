@@ -1,6 +1,8 @@
+#define op ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 public:
     int solve(int ind, int n, string& s, unordered_map<string, int>& mp, vector<int>& dp) {
+        op;
         if(ind >= n) return 0;
         if(dp[ind] != -1) return dp[ind];
         string str = "";
@@ -18,6 +20,7 @@ public:
         return dp[ind] = res;
     }
     int minExtraChar(string s, vector<string>& dictionary) {
+        op;
         unordered_map<string, int> mp;
         vector<int> dp(s.length()+1,-1);
         for(string& it: dictionary) {
