@@ -10,45 +10,20 @@
  */
 #define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
-private:
-    ListNode *revllIter(ListNode *head)
-    {
-        FASTIO;
-        ListNode *p = NULL, *c = NULL, *n = NULL;
-        p = NULL;
-        c = head;
-        while (c != NULL)
-        {
-            n = c->next;
-            c->next = p;
-            p = c;
-            c = n;
-        }
-        return p;
-    }
 public:
     ListNode* reverseBetween(ListNode* head, int left, int right) {
         FASTIO;
-        if(!head || !head->next || left==right) return head;
-        ListNode* dummy = new ListNode(0);
-        dummy->next = head;
-        head = dummy;
-        ListNode *s=NULL, *e=NULL, *t=head, *p=NULL;
-        int k = 0;
-        while(t) {
-            if(k+1==left) p=t;
-            if(k==left) s=t;
-            if(k==right) e=t;
-            k++;
-            t = t->next;
+        ListNode* temp = new ListNode(0);
+        temp->next = head;
+        ListNode* p = temp;
+        for(int i=1; i<left; ++i) p = p->next;
+        ListNode* c = p->next;
+        for(int i=1; i<=right-left; ++i) {
+            ListNode* f = c->next;
+            c->next = f->next;
+            f->next = p->next;
+            p->next = f;
         }
-        t = e;
-        e = e->next;
-        t->next=NULL;
-        s=revllIter(s);
-        p->next = s;
-        while(s->next) s=s->next;
-        s->next = e;
-        return dummy->next;
+        return temp->next;
     }
 };
