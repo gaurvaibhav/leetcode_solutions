@@ -1,6 +1,8 @@
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 private:
     long long solve(vector<int>& arr, int k) {
+        FASTIO;
         long long res = 0;
         for(auto& it: arr) {
             long long t = it/k;
@@ -10,6 +12,7 @@ private:
     }
 public:
     int minEatingSpeed(vector<int>& piles, int h) {
+        FASTIO;
         long long maxc = 0;
         for(auto& it: piles) {
             if(maxc<it) maxc=it;
