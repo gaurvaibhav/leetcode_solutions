@@ -2,17 +2,20 @@
 #define ll long long
 #define MOD 1000000007
 class Solution {
-public:
-    ll solve(ll n, vector<ll>& dp) {
+private:
+    ll solve(ll p, ll d, vector<vector<int>>& dp) {
         FASTIO;
-        if (n == 0) return 1;
-        if (dp[n] != -1) return dp[n];
-        ll res = solve(n - 1, dp) * (2 * n - 1) * n % MOD;
-        return dp[n] = res;
+        if(p == 0 && d == 0) return 1;
+        if(p<0 || d<0 || p>d) return 0;
+        if(dp[p][d] != -1) return dp[p][d];
+        ll p1 = p * solve(p-1, d, dp);
+        ll p2 = (d-p) * solve(p, d-1, dp);
+        return dp[p][d] = (p1+p2) % MOD;
     }
+public:
     int countOrders(int n) {
         FASTIO;
-        vector<ll> dp(n+1, -1);
-        return solve(n, dp);
+        vector<vector<int>> dp(n+1, vector<int> (n+1, -1));
+        return solve(n, n, dp);
     }
 };
