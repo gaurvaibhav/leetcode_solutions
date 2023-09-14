@@ -7,7 +7,7 @@ public:
         unordered_map<int, int> mp;
         for(auto& it: nums) {
             mx = max(mx, it);
-            if(it > 0) mp[it]++;
+            if(it > 0 && !mp[it]) mp[it]++;
         }
         for(auto& it: mp) {
             if(!mp[i]) return i;
