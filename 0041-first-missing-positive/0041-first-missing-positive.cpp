@@ -3,20 +3,17 @@ class Solution {
 public:
     int firstMissingPositive(vector<int>& nums) {
         FASTIO;
-        int m, mx = nums[0], i = 1;
-        set<int> s;
+        int mx = nums[0], i = 1;
+        unordered_map<int, int> mp;
         for(auto& it: nums) {
-            m = min(m, it);
             mx = max(mx, it);
-            if(it > 0) s.insert(it);
+            if(it > 0) mp[it]++;
         }
-        for(auto& it: s) {
-            if(it != i) {
-                return i;
-            }
+        for(auto& it: mp) {
+            if(!mp[i]) return i;
             i++;
         }
-        if(s.empty()) return 1;
+        if(mp.empty()) return 1;
         return ++mx;
     }
 };
