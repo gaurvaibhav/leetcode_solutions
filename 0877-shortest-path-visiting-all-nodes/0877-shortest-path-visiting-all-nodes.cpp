@@ -1,8 +1,10 @@
+#define FASTIO ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL);
 class Solution
 {
 public:
     int shortestPathLength(vector<vector<int>> &graph)
     {
+        FASTIO;
         int n, total, mask, i, val, dist, newMask;
         n = graph.size();
         total = (1 << n) - 1;
