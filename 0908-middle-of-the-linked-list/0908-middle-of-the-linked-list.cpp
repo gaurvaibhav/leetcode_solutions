@@ -8,9 +8,11 @@
  *     ListNode(int x, ListNode *next) : val(x), next(next) {}
  * };
  */
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 public:
     ListNode* middleNode(ListNode* head) {
+        FASTIO;
         ListNode *s,*f;
         s = head, f = head;
         while(f && f->next) {
