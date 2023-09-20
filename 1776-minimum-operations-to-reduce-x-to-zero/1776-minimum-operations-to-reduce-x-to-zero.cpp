@@ -1,6 +1,8 @@
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 private:
     int getLongestSubarray(vector<int>& a, int k) {
+        FASTIO;
         int n = a.size(); 
         int left = 0, right = 0; 
         int sum = a[0];
@@ -20,6 +22,7 @@ private:
     }
 public:
     int minOperations(vector<int>& nums, int x) {
+        FASTIO;
         int res, aux, k;
         res = nums.size();
         if(nums[0]>x && nums[res-1]>x) return -1;
