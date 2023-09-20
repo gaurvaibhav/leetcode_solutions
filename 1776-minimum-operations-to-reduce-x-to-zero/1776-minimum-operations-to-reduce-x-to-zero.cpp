@@ -25,7 +25,6 @@ public:
         if(nums[0]>x && nums[res-1]>x) return -1;
         aux = 0; 
         for(int& it: nums) aux+=it;
-        if(aux == x) return res;
         if(aux < x) return -1;
         k = aux-x;
         aux = getLongestSubarray(nums, k);
