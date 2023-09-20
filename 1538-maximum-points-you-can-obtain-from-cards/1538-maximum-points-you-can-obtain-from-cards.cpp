@@ -1,29 +1,21 @@
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
-private:
-    int minSumSubarrayOfSizeK(vector<int>& nums, int k) {
-        int i, j, res, curr;
-        i = j = res = curr = 0;
-        while(j<k) {
-            curr += nums[j];
-            j++;
+public:
+    int maxScore(vector<int>& nums, int k) {
+        FASTIO;
+        int res, curr, i, j;
+        i = res = curr = 0;
+        j = nums.size()-1;
+        while(i<k) {
+            curr += nums[i];i++;
         }
-        res = curr;j--;
-        while(j<nums.size()) {
-            if(j-i+1 == k) {
-                res = min(res, curr);
-            } 
-            j++;
-            if(j<nums.size()) curr += nums[j];
+        res = curr;i--;
+        while(i>=0) {
             curr -= nums[i];
-            i++;
+            curr += nums[j];
+            i--;j--;
+            res = max(res, curr);
         }
         return res;
-    }
-public:
-    int maxScore(vector<int>& cardPoints, int k) {
-        int total = 0;
-        for(int& it: cardPoints) total += it;
-        int n = cardPoints.size();
-        return total - minSumSubarrayOfSizeK(cardPoints, n-k);
     }
 };
