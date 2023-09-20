@@ -1,20 +1,21 @@
 class Solution {
 private:
-    int minSumSubarrayOfSizeK(vector<int>& arr, int k)
-    {
-        int n =arr.size();
-        if (n < k)
-        {
-            return -1;
+    int minSumSubarrayOfSizeK(vector<int>& nums, int k) {
+        int i, j, res, curr;
+        i = j = res = curr = 0;
+        while(j<k) {
+            curr += nums[j];
+            j++;
         }
-        int res = 0;
-        for (int i=0; i<k; i++)
-            res += arr[i];
-        int curr_sum = res;
-        for (int i=k; i<n; i++)
-        {
-            curr_sum += arr[i] - arr[i-k];
-            res = min(res, curr_sum);
+        res = curr;j--;
+        while(j<nums.size()) {
+            if(j-i+1 == k) {
+                res = min(res, curr);
+            } 
+            j++;
+            if(j<nums.size()) curr += nums[j];
+            curr -= nums[i];
+            i++;
         }
         return res;
     }
@@ -23,6 +24,6 @@ public:
         int total = 0;
         for(int& it: cardPoints) total += it;
         int n = cardPoints.size();
-        return total -  minSumSubarrayOfSizeK(cardPoints, n-k);
+        return total - minSumSubarrayOfSizeK(cardPoints, n-k);
     }
 };
