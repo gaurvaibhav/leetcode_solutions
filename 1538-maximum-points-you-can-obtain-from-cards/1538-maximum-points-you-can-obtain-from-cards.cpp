@@ -6,9 +6,7 @@ public:
         int res, curr, i, j;
         i = res = curr = 0;
         j = nums.size()-1;
-        while(i<k) {
-            curr += nums[i];i++;
-        }
+        while(i<k) curr += nums[i++];
         res = curr;i--;
         while(i>=0) {
             curr -= nums[i];
