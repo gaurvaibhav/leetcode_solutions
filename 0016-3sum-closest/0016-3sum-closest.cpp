@@ -1,6 +1,8 @@
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
 class Solution {
 public:
     int threeSumClosest(vector<int>& nums, int target) {
+        FASTIO;
         int res, a, i, j, n;
         n = nums.size();
         sort(nums.begin(), nums.end());
