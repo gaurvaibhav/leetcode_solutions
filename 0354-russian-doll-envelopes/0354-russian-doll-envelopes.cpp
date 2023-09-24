@@ -1,16 +1,16 @@
 class Solution {
 private:
-    int LIS(int n, vector<int>& arr) {
+    int LIS(int n, vector<vector<int>>& arr) {
         if(!n) return 0;
         vector<int> ans;
-        ans.push_back(arr[0]);
+        ans.push_back(arr[0][1]);
         for(int i=1; i<n; ++i) {
-            if(arr[i] > ans.back()) {
-                ans.push_back(arr[i]);
+            if(arr[i][1] > ans.back()) {
+                ans.push_back(arr[i][1]);
             }
             else {
-                int ind = lower_bound(ans.begin(), ans.end(), arr[i]) - ans.begin();
-                ans[ind] = arr[i];
+                int ind = lower_bound(ans.begin(), ans.end(), arr[i][1]) - ans.begin();
+                ans[ind] = arr[i][1];
             }
         }
         return ans.size();
@@ -27,7 +27,6 @@ public:
         vector<int> aux;
         sort(arr.begin(), arr.end(), cmp);
         n = arr.size();
-        for(int i=0; i<n; ++i) aux.push_back(arr[i][1]);
-        return LIS(n, aux);
+        return LIS(n, arr);
     }
 };
