@@ -1,6 +1,10 @@
+#define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
+#define ll long long
+#define MOD 1000000007
 class Solution {
 public:
     bool find132pattern(vector<int>& nums) {
+        FASTIO;
         int i, n, t;
         n = nums.size();
         t = INT_MIN;
