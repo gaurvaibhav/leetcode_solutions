@@ -1,7 +1,9 @@
 #define FASTIO ios_base::sync_with_stdio(false),cin.tie(NULL),cout.tie(NULL);
-class Solution {
+class Solution
+{
 private:
-    int firstOcc(vector<int>& arr, int t) {
+    int firstOcc(vector<int>& arr, int t)
+    {
         FASTIO;
         int ans = -1, i=0, j=arr.size()-1, mid;
         while(i<=j) {
@@ -13,7 +15,8 @@ private:
         }
         return ans;
     }
-    int lastOcc(vector<int>& arr, int t) {
+    int lastOcc(vector<int>& arr, int t)
+    {
         FASTIO;
         int ans = -1, i=0, j=arr.size()-1, mid;
         while(i<=j) {
@@ -26,7 +29,8 @@ private:
         return ans;
     }
 public:
-    vector<int> searchRange(vector<int>& nums, int target) {
+    vector<int> searchRange(vector<int>& nums, int target)
+    {
         FASTIO;
         vector<int> ans;
         ans.push_back(firstOcc(nums, target));
