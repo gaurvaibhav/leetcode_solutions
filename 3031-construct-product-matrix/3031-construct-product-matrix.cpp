@@ -11,8 +11,8 @@ public:
         int n, m, i, j;
         n = grid.size();
         m = grid[0].size();
-        vector<vector<ll>> pref(n, vector<ll> (m));
-        vector<vector<ll>> suff(n, vector<ll> (m));
+        vector<vector<int>> pref(n, vector<int> (m));
+        vector<vector<int>> suff(n, vector<int> (m));
         vector<vector<int>> res(n, vector<int> (m));
         p = 1;
         for(i=n-1; i>=0; --i)
