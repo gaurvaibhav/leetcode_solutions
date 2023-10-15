@@ -8,7 +8,7 @@ private:
     {
         FASTIO;
         if(k == 0 && ind == 0) return 1;
-        if(ind < 0 || ind >= n || k == 0 || ind > k) return 0;
+        if(ind < 0 || ind >= n || k == 0) return 0;
         if(dp[ind][k] != -1) return dp[ind][k];
         return dp[ind][k] = (((solve(ind+1, k-1, n)) % MOD + (solve(ind-1, k-1, n))) % MOD + (solve(ind, k-1, n)))% MOD;
     }
