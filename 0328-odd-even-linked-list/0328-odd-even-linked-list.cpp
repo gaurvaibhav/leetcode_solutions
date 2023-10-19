@@ -13,7 +13,7 @@ class Solution
 public:
     ListNode* oddEvenList(ListNode* h)
     {
-        if(!h || !h->next || !h->next->next)
+        if(!h || !h->next)
         return h;
         ListNode *o, *e, *a;
         o = h;
