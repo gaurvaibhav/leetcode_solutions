@@ -7,7 +7,8 @@ public:
         return h;
         ListNode *o, *e, *a;
         o = h;
-        a = e = h->next;
+        e = h->next;
+        a = e;
         while(o->next && a->next)
         {
             o->next = o->next->next;
