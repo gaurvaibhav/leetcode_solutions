@@ -3,19 +3,24 @@ class Solution
 public:
     bool backspaceCompare(string s, string t)
     {
-        string a, b;
-        int n, m, i;
+        int n, m, i, j, k;
         n = s.length(); m = t.length();
-        for(i=0; i<n; ++i)
+        i = j = 0;
+        for(k=0; k<n; ++k)
         {
-            if(s[i] == '#' && !a.empty()) a.pop_back();
-            else if(s[i] != '#') a.push_back(s[i]);
+            if(s[k] == '#') --i, i = max(0, i);
+            else s[i] = s[k], ++i;
         }
-        for(i=0; i<m; ++i)
+        for(k=0; k<m; ++k)
         {
-            if(t[i] == '#' && !b.empty()) b.pop_back();
-            else if(t[i] != '#') b.push_back(t[i]);
+            if(t[k] == '#') --j, j = max(0, j);
+            else t[j] = t[k], ++j;
         }
-        return (a == b);
+        if(i != j) return false;
+        for(k=0; k<i; ++k)
+        {
+            if(s[k] != t[k]) return false;
+        }
+        return true;
     }
 };
