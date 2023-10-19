@@ -5,9 +5,7 @@ public:
     string removeStars(string s)
     {
         FASTIO;
-        string res;
-        int i, j, n = s.length();
-        i = j = 0;
+        int i = 0, j = 0, n = s.length();
         for(j=0; j<n; ++j)
         {
             if(s[j] == '*')
@@ -21,8 +19,6 @@ public:
                 i++;
             }
         }
-        for(j=0; j<i; ++j)
-            res.push_back(s[j]);
-        return res;
+        return s.substr(0, i);
     }
 };
