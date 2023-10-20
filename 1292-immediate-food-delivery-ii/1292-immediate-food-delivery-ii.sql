@@ -1,0 +1,1 @@
+select round(sum(case when (order_date = customer_pref_delivery_date and rnk = 1) then 1 else 0 end)/sum(case when rnk = 1 then 1 else 0 end) * 100,2) as immediate_percentage from (select * ,rank() over (partition by customer_id order by order_date) as rnk from delivery) as temp
