@@ -1,29 +1,33 @@
 class Solution
 {
 private:
-    void inOrd(TreeNode* root, vector<int>& arr) 
+    int c = 0, m = 0, n = INT_MIN;
+    vector<int> res;
+    void inOrd(TreeNode* root) 
     {
         if(!root) return;
-        inOrd(root->left, arr);
-        arr.push_back(root->val);
-        inOrd(root->right, arr);
+        inOrd(root->left);
+        if(n == root->val) c++;
+        else
+        {
+            n = root->val;
+            c = 1;
+        }
+        if(c > m)
+        {
+            m = c;
+            res = {root->val};
+        }
+        else if(c == m)
+        {
+            res.push_back(root->val);
+        }
+        inOrd(root->right);
     }
 public:
     vector<int> findMode(TreeNode* root)
     {
-        int mx = 0;
-        vector<int> arr, res;
-        inOrd(root, arr);
-        unordered_map<int, int> mp;
-        for(int i=0; i<arr.size(); ++i)
-        {
-            mp[arr[i]]++;
-            mx = max(mx, mp[arr[i]]);
-        }
-        for(int i=0; i<arr.size(); ++i)
-        {
-            if(mx == mp[arr[i]]) res.push_back(arr[i]), mp[arr[i]] = -1;
-        }
+        inOrd(root);
         return res;
     }
 };
